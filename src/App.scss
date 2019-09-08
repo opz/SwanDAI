@@ -1,0 +1,85 @@
+header {
+  background-color: white;
+  color: black;
+  padding: 15px 30px;
+  margin-bottom: 15px;
+}
+
+body {
+  // padding-top: 15px;
+  background-color: black;
+  color: white;
+}
+
+.order-form {
+  border: 1px solid white;
+  margin-bottom: 20px;
+  padding: 20px;
+
+  .price {
+    text-align: center;
+    padding: 4px 0px;
+  }
+}
+
+.chart-title {
+  padding: 4px 16px;
+  // background-color: white;
+  // color: black;
+}
+
+.chart {
+
+}
+
+.baseline {
+  stroke: gray;
+}
+
+.historical-chart-wrapper {
+  border: 1px solid black;
+  display: inline-block;
+  width: 100%;
+
+  #historical-dai-chart {
+    height: 300px;
+    width: 100%;
+  }
+
+  #historical-swan-dai-chart {
+    height: 300px;
+    width: 100%;
+  }
+
+  .historical-line {
+    fill: none;
+    stroke: white;
+  }
+
+  .derivative-line {
+    fill: none;
+    stroke: white;
+  }
+
+  .historical-axis {
+    // fill: white;
+  }
+}
+
+.model-wrapper {
+  border: 1px solid white;
+  display: inline-block;
+  width: 100%;
+
+  #model-chart {
+    height: 400px;
+    width: 100%;
+    // width: 450px;
+
+    .model-line {
+      fill: none;
+      stroke: white;
+    }
+  }
+}
+
