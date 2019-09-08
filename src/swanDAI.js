@@ -1,4 +1,4 @@
-export const abi = [
+export const swanAbi = [
   {
     "constant": true,
     "inputs": [],
@@ -1002,4 +1002,4 @@ export const abi = [
   }
 ];
 
-export const address = '0xB4D519bF26c10C3b57765D59e61a8fFd9b44a0b5';
+export const swanAddress = '0x296A3acf6D0DC63210b2830936993A4b69481884';

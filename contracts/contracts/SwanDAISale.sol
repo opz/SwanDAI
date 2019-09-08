@@ -22,8 +22,9 @@ contract SwanDAISale {
     }
 
     function purchase(uint256 amount) external {
+        // TODO: add premium to cost
         usdc.transferFrom(msg.sender, swanDAIHolder, getUSDCPurchaseAmount(amount)); 
-        swanDAI.transferFrom(swanDAIHolder, msg.sender, amount);
+        swanDAI.transferFrom(swanDAIHolder, msg.sender, amount * (10 ** 18));
     }
 
     function getUSDCPurchaseAmount(uint256 amount) public view returns (uint256) {
