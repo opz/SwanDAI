@@ -34,7 +34,7 @@ function App() {
           </div>
           <div className="col-sm-10 offset-sm-1">
             <div className="video">
-              <video height="750" controls>
+              <video height="600" controls>
                 <source src="viz.mp4" type="video/mp4" />
               </video>
             </div>
