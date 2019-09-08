@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useWeb3Context } from 'web3-react';
 import { abi, address } from './swanDAI';
 import { derivativePrice } from './helpers'
+import SwanDAISale from './contracts/SwanDAISale.json';
 
 async function buySwanDAI(context) {
   const instance = await context.library.eth.Contract(abi, address);
