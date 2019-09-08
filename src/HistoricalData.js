@@ -2,13 +2,18 @@ import React from 'react'
 import * as d3 from 'd3'
 import { initResponsive, derivativePrice } from './helpers'
 
-function premium() {
-
+const expiry = 1576800000000
+function premium(d) {
+  const daysleft = (expiry - d.timestamp) / (24 * 60 * 60000)
+  return d.derivative + 0.02 + (Math.random() / 50)
 }
 
 class HistoricalData extends React.Component {
   componentDidMount() {
-    const { data } = this.props
+    const data = this.props.data.map(d => {
+      d.premium = premium(d)
+      return d
+    })
 
     const margins = { top: 15, right: 10, bottom: 50, left: 60 }
     const daiChart = initResponsive("#historical-dai-chart", { top: 15, right: 10, bottom: 5, left: 60 })
@@ -26,7 +31,7 @@ class HistoricalData extends React.Component {
 
     const swandaiY = d3.scaleLinear()
       .rangeRound([swandaiChart.chartHeight, 0])
-      .domain([0.95, d3.max(data, d => d.derivative)])
+      .domain([0.975, d3.max(data, d => d.derivative)*1.05])
 
     const line = d3.line()
       .x(d => x(new Date(d.timestamp)))
@@ -34,12 +39,17 @@ class HistoricalData extends React.Component {
 
     const dline = d3.line()
       .x(d => x(new Date(d.timestamp)))
-      .y(d => swandaiY(d.derivative))
+      .y(d => swandaiY(d.premium))
 
-    // const dArea = d3.area()
-    //   .x(d => x(new Date(d.timestamp)))
-    //   .y0(d => swandaiY(d.derivative))
-    //   .y1(d => swandaiY(d.derivative))
+    const area = d3.area()
+      .x(d => x(new Date(d.timestamp)))
+      .y0(d => daiY(1))
+      .y1(d => daiY(d.price))
+
+    const premiumArea = d3.area()
+      .x(d => x(new Date(d.timestamp)))
+      .y0(d => swandaiY(d.derivative))
+      .y1(d => swandaiY(d.premium))
 
     daiChart.g.append("g")
       .attr("class", "historical-axis historical-axis-y")
@@ -56,11 +66,17 @@ class HistoricalData extends React.Component {
 
     daiChart.g.append("path")
       .datum(data)
+      .attr("class", "historical-area")
+      .attr("stroke-width", 0)
+      .attr("d", area)
+
+    daiChart.g.append("path")
+      .datum(data)
       .attr("class", "historical-line")
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "round")
       .attr("stroke-width", 1.5)
-      .attr("d", line) 
+      .attr("d", line)  
 
     daiChart.g.append("path")
       .datum([{timestamp: data[0].timestamp, price: 1}, {timestamp: data[data.length - 1].timestamp, price: 1}])
@@ -68,7 +84,13 @@ class HistoricalData extends React.Component {
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "round")
       .attr("stroke-width", 1.5)
-      .attr("d", line)  
+      .attr("d", line) 
+
+    swandaiChart.g.append("path")
+      .datum(data)
+      .attr("class", "swandai-area")
+      .attr("stroke-width", 0)
+      .attr("d", premiumArea) 
 
     swandaiChart.g.append("path")
       .datum(data)

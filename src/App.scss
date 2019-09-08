@@ -1,35 +1,54 @@
 header {
-  background-color: white;
-  color: black;
+  background-color: #333333;
+  color: white;
   padding: 15px 30px;
   margin-bottom: 15px;
 }
 
 body {
-  // padding-top: 15px;
-  background-color: black;
-  color: white;
+  background-color: #ebebeb;
 }
 
 .order-form {
-  border: 1px solid white;
   margin-bottom: 20px;
   padding: 20px;
+  border: 1px solid black;
+  background-color: white;
+
+  .contract-title {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 4px 10px;
+    background-color: gray;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+  }
 
   .price {
     text-align: center;
     padding: 4px 0px;
   }
+
+  .btn {
+    margin: 10px 0px;
+  }
 }
 
 .chart-title {
   padding: 4px 16px;
-  // background-color: white;
-  // color: black;
+  font-weight: bold;
+  text-align: center;
 }
 
 .chart {
-
+  background-color: white;
+  text {
+    stroke: black;
+    fill: black;
+  }
+  border: 1px solid black;
+  // box-shadow: 5px 5px blue;
 }
 
 .baseline {
@@ -37,7 +56,6 @@ body {
 }
 
 .historical-chart-wrapper {
-  border: 1px solid black;
   display: inline-block;
   width: 100%;
 
@@ -53,33 +71,49 @@ body {
 
   .historical-line {
     fill: none;
-    stroke: white;
+    stroke: black;
+  }
+
+  .historical-area {
+    fill: rgba(100%,38.8%,27.8%, 0.5);
+    stroke: none;
+  }
+
+  .swandai-area {
+    fill: rgba(15.7%,65.5%,27.1%, 0.5)
   }
 
   .derivative-line {
     fill: none;
-    stroke: white;
+    stroke: black;
   }
 
   .historical-axis {
-    // fill: white;
+    color: black;
   }
 }
 
 .model-wrapper {
-  border: 1px solid white;
   display: inline-block;
   width: 100%;
+
+  .model-axis {
+    color: black;
+  }
 
   #model-chart {
     height: 400px;
     width: 100%;
-    // width: 450px;
 
     .model-line {
       fill: none;
-      stroke: white;
+      stroke: black;
     }
   }
+}
+
+.video {
+  margin: 75px 0px;
+  text-align: center;
 }
 

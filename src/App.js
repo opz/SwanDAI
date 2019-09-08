@@ -36,7 +36,7 @@ function App() {
     >
       <div className="App">
         <header>
-          SwanDAI <span>by WIII</span>
+          <img height="40" width="50" src="./SwanDAI.png" /> SwanDAI <span>by WIII</span>
         </header>
         <div className="container-fluid body">
           <div className="row">
@@ -46,6 +46,13 @@ function App() {
             </div>
             <div className="col-sm-8">
               <HistoricalData data={data} />
+            </div>
+            <div className="col-sm-10 offset-sm-1">
+              <div className="video">
+                <video height="600" controls>
+                  <source src="viz.mp4" type="video/mp4" />
+                </video>
+              </div>
             </div>
           </div>
         </div>
