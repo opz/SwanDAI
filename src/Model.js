@@ -3,8 +3,8 @@ import * as d3 from 'd3'
 import { initResponsive, derivativePrice } from './helpers'
 
 const xData = []
-for (let i = 0.5; i <= 1.5; i += 0.025) {
-  xData.unshift(i)
+for (let i = 1; i <= 1.5; i += 0.025) {
+  xData.push(i)
 }
 const data = xData.map(x => [x, derivativePrice(x)])
 
@@ -18,7 +18,7 @@ class Model extends React.Component {
       .domain(d3.extent(data, d => d[1]))
 
     const x = d3.scaleLinear()
-      .rangeRound([chartWidth, 0])
+      .rangeRound([0, chartWidth])
       .domain(d3.extent(data, d => d[0]))
 
     const line = d3.line()
@@ -40,7 +40,7 @@ class Model extends React.Component {
             "translate(" + (chartWidth/2) + " ," + 
                            (chartHeight + margins.top + 20) + ")")
       .style("text-anchor", "middle")
-      .text("DAI price ($)")
+      .text("Distance from Peg ($)")
 
     g.append("text")
       .attr("transform", "rotate(-90)")
